@@ -13,6 +13,22 @@ import (
 	"github.com/Himanshuxone/gateway/proto"
 )
 
+func main(){
+	// get configuration
+	address := "9090"
+
+	// Set up a connection to the server.
+	conn, err := grpc.Dial(*address, grpc.WithInsecure())
+	if err != nil {
+		log.Fatalf("did not connect: %v", err)
+	}
+	defer conn.Close()
+	log.Println("connection state ====> ", conn.GetState())
+
+	// user client
+	Client(conn)
+}
+
 // Client is a user service client
 func Client(conn *grpc.ClientConn){
 
