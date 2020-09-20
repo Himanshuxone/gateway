@@ -1,24 +1,20 @@
 package main
 
 import (
-	"flag"
 	"log"
 	"google.golang.org/grpc"
-	"github.com/Himanshuxone/gateway/client"
 	"context"
-	"log"
 	"time"
-	"google.golang.org/grpc"
 	"github.com/golang/protobuf/ptypes/empty"
 	"github.com/Himanshuxone/gateway/proto"
 )
 
 func main(){
 	// get configuration
-	address := "9090"
+	address := "localhost:9090"
 
 	// Set up a connection to the server.
-	conn, err := grpc.Dial(*address, grpc.WithInsecure())
+	conn, err := grpc.Dial(address, grpc.WithInsecure())
 	if err != nil {
 		log.Fatalf("did not connect: %v", err)
 	}
