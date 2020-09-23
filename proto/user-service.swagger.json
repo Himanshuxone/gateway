@@ -19,7 +19,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/v1CreateUserResponse"
+              "$ref": "#/definitions/protoCreateUserResponse"
             }
           },
           "default": {
@@ -35,7 +35,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/v1CreateUserRequest"
+              "$ref": "#/definitions/protoCreateUserRequest"
             }
           }
         ],
@@ -52,7 +52,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/v1ReadAllUserResponse"
+              "$ref": "#/definitions/protoReadAllUserResponse"
             }
           },
           "default": {
@@ -69,6 +69,54 @@
     }
   },
   "definitions": {
+    "protoCreateUserRequest": {
+      "type": "object",
+      "properties": {
+        "user": {
+          "$ref": "#/definitions/protoUser"
+        }
+      },
+      "title": "Request data to create new user"
+    },
+    "protoCreateUserResponse": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "int64",
+          "title": "ID of created user"
+        }
+      },
+      "title": "Contains data of created user"
+    },
+    "protoReadAllUserResponse": {
+      "type": "object",
+      "properties": {
+        "userlist": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/protoUser"
+          },
+          "title": "list of users"
+        }
+      },
+      "title": "Contains list of all users"
+    },
+    "protoUser": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "int64"
+        },
+        "user": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        }
+      }
+    },
     "protobufAny": {
       "type": "object",
       "properties": {
@@ -99,54 +147,6 @@
           "items": {
             "$ref": "#/definitions/protobufAny"
           }
-        }
-      }
-    },
-    "v1CreateUserRequest": {
-      "type": "object",
-      "properties": {
-        "user": {
-          "$ref": "#/definitions/v1User"
-        }
-      },
-      "title": "Request data to create new user"
-    },
-    "v1CreateUserResponse": {
-      "type": "object",
-      "properties": {
-        "id": {
-          "type": "string",
-          "format": "int64",
-          "title": "ID of created user"
-        }
-      },
-      "title": "Contains data of created user"
-    },
-    "v1ReadAllUserResponse": {
-      "type": "object",
-      "properties": {
-        "userlist": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/v1User"
-          },
-          "title": "list of users"
-        }
-      },
-      "title": "Contains list of all users"
-    },
-    "v1User": {
-      "type": "object",
-      "properties": {
-        "id": {
-          "type": "string",
-          "format": "int64"
-        },
-        "user": {
-          "type": "string"
-        },
-        "email": {
-          "type": "string"
         }
       }
     }
