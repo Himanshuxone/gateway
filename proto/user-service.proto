@@ -2,6 +2,7 @@ syntax = "proto3";
 package v1;
 
 import "google/protobuf/empty.proto";
+import "google/api/annotations.proto";
 
 message User {
     int64 id = 1;
@@ -27,11 +28,19 @@ message ReadAllUserResponse{
 }
 
 // Service to manage list of users
+// (== suppress_warning versioning-* ==)
 service UserService {
 
     // Create new user
-    rpc Create(CreateUserRequest) returns (CreateUserResponse);
+    rpc Create(CreateUserRequest) returns (CreateUserResponse){
+        option (google.api.http) = {
+            post : "/v1/user"
+            body : "*"
+        };
+    }
 
     // Read all users
-    rpc ReadAll(google.protobuf.Empty) returns (ReadAllUserResponse);
+    rpc ReadAll(google.protobuf.Empty) returns (ReadAllUserResponse) {
+        option (google.api.http).get = "/v1/users";
+    }
 }

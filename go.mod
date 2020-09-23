@@ -6,7 +6,7 @@ require (
 	github.com/Himanshuxone/rpc v0.0.0-20200822195702-4139cd1f2e1c
 	github.com/fsnotify/fsnotify v1.4.9 // indirect
 	github.com/golang/protobuf v1.4.2
-	github.com/grpc-ecosystem/grpc-gateway v1.15.0 // indirect
+	github.com/grpc-ecosystem/grpc-gateway v1.15.0
 	github.com/magiconair/properties v1.8.3 // indirect
 	github.com/mitchellh/mapstructure v1.3.3 // indirect
 	github.com/pelletier/go-toml v1.8.1 // indirect
@@ -20,9 +20,9 @@ require (
 	github.com/spf13/viper v1.7.1 // indirect
 	golang.org/x/net v0.0.0-20200904194848-62affa334b73 // indirect
 	golang.org/x/sys v0.0.0-20200918174421-af09f7315aff // indirect
-	google.golang.org/genproto v0.0.0-20200918140846-d0d605568037 // indirect
+	google.golang.org/genproto v0.0.0-20200918140846-d0d605568037
 	google.golang.org/grpc v1.32.0
-	google.golang.org/protobuf v1.25.0 // indirect
+	google.golang.org/protobuf v1.25.0
 	gopkg.in/ini.v1 v1.61.0 // indirect
 	gopkg.in/yaml.v2 v2.3.0 // indirect
 )
