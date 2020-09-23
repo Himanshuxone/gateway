@@ -7,7 +7,7 @@ import(
 	"fmt"
 	"log"
 	empty "github.com/golang/protobuf/ptypes/empty"
-	"github.com/Himanshuxone/gateway/proto"
+	"github.com/Himanshuxone/gateway/proto/v1"
 	"google.golang.org/grpc"
 	"database/sql"
 	"context"
@@ -18,12 +18,10 @@ type Database struct{
 	db *sql.DB
 }
 
-func RunServer(){
-
-	ctx := context.Background()
+func RunServer(ctx context.Context, port string){
 
 	database := &Database{}
-	listen, err := net.Listen("tcp", ":9090")
+	listen, err := net.Listen("tcp", port)
 	if err != nil {
 		errStr := fmt.Errorf("%s",err)
 		log.Panic(errStr)
@@ -50,7 +48,7 @@ func RunServer(){
 
 	// start gRPC server
 	log.Println("starting gRPC server...")
-	return grpc.RunServer(ctx, v1API, "9090")
+	server.Serve(listen)
 }
 
 // Create grpc call will create a user

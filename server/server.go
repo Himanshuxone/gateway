@@ -1,8 +1,9 @@
 package main
 
-import(
-	grpcServer "github.com/Himanshuxone/gateway/grpc"
-	restServer "github.com/Himanshuxone/gateway/rest"
+import (
+	"github.com/Himanshuxone/gateway/proto"
+	grpcServer "github.com/Himanshuxone/gateway/server/grpc"
+	restServer "github.com/Himanshuxone/gateway/server/rest"
 )
 
 const (
@@ -10,13 +11,14 @@ const (
 	HTTPPort = "9000"
 )
 
-func main(){
+func main() {
 
 	ctx := context.Background()
+
 	// run HTTP gateway
 	go func() {
-		_ = rest.RunServer(ctx, GRPCPort, HTTPPort)
+		_ = restServer.RunServer(ctx, GRPCPort, HTTPPort)
 	}()
 
-	return grpc.RunServer()
+	return grpcServer.RunServer(ctx, GRPCPort)
 }
