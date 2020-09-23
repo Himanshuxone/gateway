@@ -7,7 +7,7 @@ import(
 	"fmt"
 	"log"
 	empty "github.com/golang/protobuf/ptypes/empty"
-	"github.com/Himanshuxone/gateway/proto/v1"
+	"github.com/Himanshuxone/gateway/proto"
 	"google.golang.org/grpc"
 	"database/sql"
 	"context"
@@ -19,9 +19,9 @@ type Database struct{
 }
 
 func RunServer(ctx context.Context, port string){
-
+	log.Println(port)
 	database := &Database{}
-	listen, err := net.Listen("tcp", port)
+	listen, err := net.Listen("tcp", ":"+port)
 	if err != nil {
 		errStr := fmt.Errorf("%s",err)
 		log.Panic(errStr)
@@ -29,7 +29,7 @@ func RunServer(ctx context.Context, port string){
 
 	// register service
 	server := grpc.NewServer()
-	v1.RegisterUserServiceServer(server, database)
+	proto.RegisterUserServiceServer(server, database)
 
 	// graceful shutdown
 	c := make(chan os.Signal, 1)
@@ -52,14 +52,14 @@ func RunServer(ctx context.Context, port string){
 }
 
 // Create grpc call will create a user
-func (db *Database) Create(ctx context.Context, req *v1.CreateUserRequest) (*v1.CreateUserResponse, error){
+func (db *Database) Create(ctx context.Context, req *proto.CreateUserRequest) (*proto.CreateUserResponse, error){
 	fmt.Printf("\n%v",req)
-	return &v1.CreateUserResponse{}, nil
+	return &proto.CreateUserResponse{}, nil
 }
 
 // ReadAll will read all the users
-func (db *Database) ReadAll(ctx context.Context, req *empty.Empty) (*v1.ReadAllUserResponse, error){
+func (db *Database) ReadAll(ctx context.Context, req *empty.Empty) (*proto.ReadAllUserResponse, error){
 	fmt.Printf("\n%v",req)
-	return &v1.ReadAllUserResponse{}, nil
+	return &proto.ReadAllUserResponse{}, nil
 }
 

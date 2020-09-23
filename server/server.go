@@ -1,12 +1,12 @@
 package main
 
 import (
-	"github.com/Himanshuxone/gateway/proto"
+	"context"
 	grpcServer "github.com/Himanshuxone/gateway/server/grpc"
 	restServer "github.com/Himanshuxone/gateway/server/rest"
 )
 
-const (
+var (
 	GRPCPort = "9090"
 	HTTPPort = "9000"
 )
@@ -20,5 +20,5 @@ func main() {
 		_ = restServer.RunServer(ctx, GRPCPort, HTTPPort)
 	}()
 
-	return grpcServer.RunServer(ctx, GRPCPort)
+	grpcServer.RunServer(ctx, GRPCPort)
 }
