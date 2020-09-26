@@ -6,6 +6,7 @@ import(
 	"os/signal"
 	"fmt"
 	"log"
+	_ "github.com/google/uuid"
 	empty "github.com/golang/protobuf/ptypes/empty"
 	"github.com/Himanshuxone/gateway/proto"
 	"google.golang.org/grpc"
@@ -54,7 +55,9 @@ func RunServer(ctx context.Context, port string){
 // Create grpc call will create a user
 func (db *Database) Create(ctx context.Context, req *proto.CreateUserRequest) (*proto.CreateUserResponse, error){
 	fmt.Printf("\n%v",req)
-	return &proto.CreateUserResponse{}, nil
+	return &proto.CreateUserResponse{
+		Id: int64(123),
+	}, nil
 }
 
 // ReadAll will read all the users
