@@ -54,9 +54,12 @@ func RunServer(ctx context.Context, port string){
 
 // Create grpc call will create a user
 func (db *Database) Create(ctx context.Context, req *proto.CreateUserRequest) (*proto.CreateUserResponse, error){
-	fmt.Printf("\n%v",req)
+	fmt.Printf("\nUser request Object:=> %+v",req)
 	return &proto.CreateUserResponse{
-		Id: int64(123),
+		Response: &proto.UserResponse{
+			Id: int64(12345),
+			User: req.User.GetUser(),
+		},
 	}, nil
 }
 

@@ -10,6 +10,11 @@ message User {
     string email = 3;
 }
 
+message UserResponse {
+    int64 id = 1;
+    string user = 2;
+}
+
 // Request data to create new user
 message CreateUserRequest{
     User user = 1;
@@ -18,7 +23,7 @@ message CreateUserRequest{
 // Contains data of created user
 message CreateUserResponse{
     // ID of created user
-    int64 id = 1;
+    UserResponse response = 1;
 }
 
 // Contains list of all users
@@ -35,7 +40,7 @@ service UserService {
     rpc Create(CreateUserRequest) returns (CreateUserResponse){
         option (google.api.http) = {
             post : "/v1/user"
-            body : "*"
+            body : "user"
         };
     }
 

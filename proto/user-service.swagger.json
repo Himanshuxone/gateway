@@ -35,7 +35,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/protoCreateUserRequest"
+              "$ref": "#/definitions/protoUser"
             }
           }
         ],
@@ -69,21 +69,11 @@
     }
   },
   "definitions": {
-    "protoCreateUserRequest": {
-      "type": "object",
-      "properties": {
-        "user": {
-          "$ref": "#/definitions/protoUser"
-        }
-      },
-      "title": "Request data to create new user"
-    },
     "protoCreateUserResponse": {
       "type": "object",
       "properties": {
-        "id": {
-          "type": "string",
-          "format": "int64",
+        "response": {
+          "$ref": "#/definitions/protoUserResponse",
           "title": "ID of created user"
         }
       },
@@ -113,6 +103,18 @@
           "type": "string"
         },
         "email": {
+          "type": "string"
+        }
+      }
+    },
+    "protoUserResponse": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "int64"
+        },
+        "user": {
           "type": "string"
         }
       }

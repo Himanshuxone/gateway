@@ -28,13 +28,13 @@ func main(){
 // Client is a user service client
 func Client(conn *grpc.ClientConn){
 
-	c := v1.NewUserServiceClient(conn)
+	c := proto.NewUserServiceClient(conn)
 	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
 	defer cancel()
 
 	// Call Create
-	req1 := v1.CreateUserRequest{
-		User: &v1.User{
+	req1 := proto.CreateUserRequest{
+		User: &proto.User{
 			User: "Irene A. Andrews",
 			Email: "IreneAAndrews@teleworm.us",
 		},
@@ -45,8 +45,8 @@ func Client(conn *grpc.ClientConn){
 	}
 	log.Printf("Create result: <%+v>\n\n", res1)
 
-	id := res1.Id
-	log.Println("User inserted: ", id)
+	user := res1.Response.GetUser()
+	log.Println("User inserted: ", user)
 
 	res4, err := c.ReadAll(ctx, &empty.Empty{})
 	if err != nil {
