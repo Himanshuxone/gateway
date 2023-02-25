@@ -1,4 +1,4 @@
-# Implementing grpc gateway for handling both requests.
+# Implementing grpc gateway for handling gRPC and Rest api's
 
 ## generating proto files
 ```
